@@ -4,7 +4,7 @@ from massive.rest.models import Agg
 import yaml
 from urllib3 import HTTPResponse
 
-from FirstTimer.Entities import MassiveApi
+from FirstTimer.Entities import MassiveApiInterface
 from massive import RESTClient
 
 DEFAULT_STOCK_ID_TEST = "AAPL"
@@ -35,8 +35,8 @@ def get_stock_market_data(
 def format_stock_market_data(
         stock_market_data: Iterator[Agg] | HTTPResponse,
         stock_name_id: Optional[str] = DEFAULT_STOCK_ID_TEST
-) -> list[MassiveApi.AggData]:
-    aggs: list[MassiveApi.AggData] = []
+) -> list[MassiveApiInterface.AggData]:
+    aggs: list[MassiveApiInterface.AggData] = []
     for a in stock_market_data:
         aggs.append({
             'timestamp': a.timestamp,
